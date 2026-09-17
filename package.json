@@ -1,0 +1,74 @@
+{
+  "name": "rck-afk-bot",
+  "version": "1.2.6",
+  "description": "RCK AFK Bot - Minecraft farm otomasyonu | RCK Network",
+  "main": "main.js",
+  "author": "Rodchaskai - RCK Network (www.rodchaskai.com.tr)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kullaniciadi/rck-afk-bot.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win nsis",
+    "dist": "electron-builder --win nsis",
+    "dist-setup": "electron-builder --win nsis",
+    "dist-portable": "electron-builder --win portable",
+    "dist-all": "electron-builder --win nsis portable"
+  },
+  "dependencies": {
+    "build": "^0.1.4",
+    "electron-updater": "^6.6.2",
+    "mineflayer": "^4.20.1"
+  },
+  "devDependencies": {
+    "electron": "^31.3.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "tr.com.rodchaskai.rckafkbot",
+    "productName": "RCK AFK Bot",
+    "asar": true,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "bot-manager.js",
+      "renderer/**/*",
+      "server/**/*",
+      "package.json",
+      "!**/*.map"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "RCK-AFK-Bot-${version}.exe",
+      "requestExecutionLevel": "user"
+    },
+    "nsis": {
+      "artifactName": "RCK-AFK-Bot-Setup-${version}.exe",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "RCK AFK Bot",
+      "perMachine": false
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "RadiancesX",
+      "repo": "rck-afk-bot"
+    }
+  }
+}
